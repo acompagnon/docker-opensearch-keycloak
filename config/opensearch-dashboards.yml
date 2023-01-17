@@ -1,0 +1,35 @@
+server.name: osd
+server.host: '0.0.0.0'
+
+opensearch.username: kibanaserver
+opensearch.password: kibanaserver
+
+opensearch.hosts:
+    [https://opensearch-node1:9200, https://opensearch-node2:9200, https://opensearch-node3:9200]
+
+# Encrypt traffic between the browser and Opensearch dashboards
+server.ssl.enabled: true
+server.ssl.certificate: /usr/share/opensearch-dashboards/config/certificates/os-dashboards/osd.pem
+server.ssl.key: /usr/share/opensearch-dashboards/config/certificates/os-dashboards/osd.key
+
+# Encrypt traffic between OpenSearch dashboards and Opensearch
+opensearch.ssl.certificateAuthorities:
+    [/usr/share/opensearch-dashboards/config/certificates/ca/root-ca.pem]
+opensearch.ssl.verificationMode: full
+
+opensearch.requestHeadersAllowlist: ['securitytenant', 'Authorization']
+
+opensearch_security.multitenancy.enabled: true
+opensearch_security.multitenancy.tenants.enable_global: true
+opensearch_security.multitenancy.tenants.enable_private: true
+opensearch_security.multitenancy.tenants.preferred: ['Private', 'Global']
+opensearch_security.multitenancy.enable_filter: false
+
+opensearch_security.auth.type: openid
+opensearch_security.allow_client_certificates: true
+opensearch_security.openid.connect_url: https://172.17.0.1:8443/realms/master/.well-known/openid-configuration
+opensearch_security.openid.base_redirect_url: https://172.17.0.1:5601
+opensearch_security.openid.client_id: opensearch-dashboards
+opensearch_security.openid.client_secret: ''
+opensearch_security.openid.root_ca: /usr/share/opensearch-dashboards/config/certificates/ca/root-ca.pem
+opensearch_security.openid.verify_hostnames: 'false'
