@@ -8,6 +8,13 @@
 - Keycloak : **20**
 - Postgres (used for Keycloak) : **15**
 
+<div>
+    <img src="./documentation/opensearch-logo.png" alt="opensearch logo" height="50"/>
+    <img src="./documentation/keycloak-logo.png" alt="keycloak logo" height="50"/>
+    <img src="./documentation/postgresql-logo.png" alt="postgresql logo" height="50"/>
+</div>
+
+
 ## Setup
 
 1. Important settings
